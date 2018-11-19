@@ -1,0 +1,28 @@
+srLatch(set, reset; Q){
+   signal nandWire1, nandWire2;
+
+   nandWire1 = set nand nandWire2;
+   nandWire2 = reset nand nandWire1;
+
+   Q = nandWire1;
+}
+
+flipflipD(data, clock; Q){
+   import srLatch;
+   signal andWire1, andWire2;
+
+   andWire1 = data and clock;
+   andWire2 = not data and clock;
+   srLatch(andWire2, andWire1; Q);
+}
+
+flipflipT(T, clock; Q){
+   import srLatch;
+   signal srQ, andWire1, andWire2;
+
+   andWire1 = T and clock and srQ;
+   andWire2 = T and clock and not srQ;
+   srLatch(andWire1, andWire2; srQ);
+
+   Q = srQ;
+}
