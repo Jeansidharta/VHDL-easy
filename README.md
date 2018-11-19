@@ -1,10 +1,10 @@
 # Simple Hardware Description Language
 
-##Overview
+## Overview
 
 SHDL (Simple hardware Description language) is an extremely low-level hardware language with a C like syntax. It was made to work only with basic logic gates and user-made modules. SHDL's greatest feature is it's compact syntax when compared with the more traditional languages (VHDL and verilog). It was heavily inspired in VHDL's logic and C's syntax.
 
-##Components
+## Components
 
 The language is composed of three main components:
 
@@ -12,7 +12,7 @@ The language is composed of three main components:
 2. Logic gates: manipulates electrical signals.
 3. Blocks: user-defined group of connected wires and logic gates, with some wires defined as block inputs and block outputs. Can be freely copied into other blocks.
 
-##Actions
+## Actions
 
 There are four main actions:
 
