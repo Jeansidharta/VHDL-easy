@@ -1,0 +1,4 @@
+FullAdder(A, B, carry_in; out, carry_out){
+   out = A xor B xor carry_in;
+   carry_out = (A and B) or (A and carry_in) or (B and carry_in);
+}

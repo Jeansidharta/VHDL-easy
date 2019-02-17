@@ -4,6 +4,12 @@
 
 SHDL (Simple hardware Description language) is an extremely low-level hardware language with a C like syntax. It was made to work only with basic logic gates and user-made modules. SHDL's greatest feature is it's compact syntax when compared with the more traditional languages (VHDL and verilog). It was heavily inspired in VHDL's logic and C's syntax.
 
+The code presented will turn all SHDL code in VHDL-equivalent, to be used in a proper interpreter.
+
+## How to use
+
+This code was intended to be used with nodejs. Simply run `npm main.js FILES_TO_RUN` replacing "FILES TO RUN" with a list of filenames you want to run. This will generateone .shdl file for every given file.
+
 ## Components
 
 The language is composed of three main components:
@@ -21,8 +27,8 @@ There are four main actions:
 3. Import another block
 4. Instantiate imported block
 
-##Hello World
-Since we can't print in hardware, I'll start demonstrating the language by using a Full adder as demonstration.
+## Hello World
+Since we can't print in hardware, I'll start demonstrating the language by using a Full adder.
 
 ```
 //save this in a file named full_adder_file.shdl
@@ -36,7 +42,7 @@ The first thing we must do is create a block, since everything in this language 
 
 The second and third line are both assignments. They simply assign some logic of many wires and logic gates to a single wire.
 
-Now we have a block named "FullAdder" that performs the addition of two bits with a carry. To demonstrate the rest o the features, I will create another block to perform a 4-bit addition using the FullAdder.
+Now we have a block named "FullAdder" that performs the addition of two bits with a carry. To demonstrate the rest of the features, I will create another block to perform a 4-bit addition using the FullAdder.
 
 ```
 //save this in a file named adder_4bits_file.shdl
@@ -51,13 +57,16 @@ Adder_4bits(A[4], B[4]; out[4], overflow){
 }
 ```
 
-In the first line, we again create a new block named "Adder_4bits", but this time by declaring busses (wire arrays) as arguments. They behave much like in any other language, with each index being an idividual wire. In this case, we created two input busses named "A" and "B", both containing four wires. They will represent the numbers to be added in binary. As output, we have a four elements bus named "out", which will be the result, along with a single bit to signify an overflow.
+In the first line, we again create a new block named "Adder_4bits", but this time by declaring buses (wire arrays) as arguments. They behave much like in any other language, with each index being an idividual wire. In this case, we created two input buses named "A" and "B", both containing four wires. They will represent the numbers to be added in binary. As output, we have a four-sized bus named "out", which will be the result, along with a single bit to signify an overflow.
 
-Note that you can access individual sections of the bus with the following syntax: `BUS_NAME[START to END]`, e.g. `carries[1 to 2]`
+Note that you can access individual sections of the bus with the following syntax: `BUS_NAME[START to END]`, e.g. `carries[1 to 2]` (start and end are inclusive)
 
-In the second line, we declare the intent of using another block by using the keyword "import". The syntax is `import BLOCK_NAME from FILE_NAME;` if the block is in another file, and `import BLOCK_NAME;` if the block is in the same file.
+In the second line, we declare the intent of using another block by typing the keyword "import". The syntax is `import BLOCK_NAME from FILE_NAME;` if the block is in another file, and `import BLOCK_NAME;` if the block is in the current file.
 
 The third line is a wire declaration, that specifies auxiliar wires to be used. In this case, we are declaring a wire array named "carries" os size 3.
 
-The remaining lines are import instantiations, which uses the previously imported block. To instantiate an imported block, the syntax is `BLOCK_NAME(INPUT_WIRES_LIST; OUTPUT_WIRES_LIST);`. This will create a copy of the imported block and connect the INPUT_WIRES_LIST and OUTPUT_WIRES_LIST to it's corresponding inputs and outputs. In this case, we are doing an addition using four full adders. One thing to note is that you can use a constant value (in binary) to replace any wire that would not be written into, as exemplified by the zero in the fourth line, e.g. `carries[0 to 2] = 101`.
+The remaining lines are import instantiations, which uses the previously imported block. To instantiate an imported block, the syntax is `BLOCK_NAME(INPUT_WIRES_LIST; OUTPUT_WIRES_LIST);`. This will create a copy of the imported block and connect the INPUT_WIRES_LIST and OUTPUT_WIRES_LIST to it's corresponding inputs and outputs. In this case, we are doing an addition using four full adders. One thing to note is that you can use a constant value (in binary) to replace any wire that would not be written into, as exemplified by the zero in the fourth line, e.g. `carries[0 to 2] = 101;`
 
+## Examples
+
+Each example in the folder has an individual readme file with complete instructions in how to run. Every single one of them was tested, and should be working in any machine.

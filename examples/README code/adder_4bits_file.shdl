@@ -1,0 +1,9 @@
+Adder_4bits(A[4], B[4]; out[4], overflow){
+   import FullAdder from full_adder_file.shdl;
+   signal carries[3];
+
+   FullAdder(A[0], B[0],     0     ; out[0], carries[0]);
+   FullAdder(A[1], B[1], carries[0]; out[1], carries[1]);
+   FullAdder(A[2], B[2], carries[1]; out[2], carries[2]);
+   FullAdder(A[3], B[3], carries[2]; out[3], overflow);
+}

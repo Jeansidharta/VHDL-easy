@@ -1,0 +1,15 @@
+You must go to this directory before running this code.
+
+To compile all files, run
+
+node ../../main.js adder_4bits_file.shdl full_adder_file.shdl
+or
+node ../../main.js *.js
+
+to compile a specific file, run
+
+node ../../main.js FILE_NAME
+
+
+
+This is the code in the readme main file. The expected results are displayed in the "expected results" folder.
