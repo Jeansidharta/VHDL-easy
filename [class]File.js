@@ -11,7 +11,7 @@ function isCharLetter(char){
    if(
       (unicode >= unicodeA && unicode <= unicodeZ) ||
       (unicode >= unicodeACaps && unicode <= unicodeZCaps) ||
-      char == "_"
+      char == "_" || char == "."
    )
       return true;
    return false;
