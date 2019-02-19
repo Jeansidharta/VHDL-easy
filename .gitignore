@@ -29,3 +29,6 @@
 
 #vim swap files
 *.swp
+
+#javascript files
+*.js
